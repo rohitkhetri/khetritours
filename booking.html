@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Booking Form</title>
+	<link rel="stylesheet" type="text/css" href="css/bookingcss.css">
+	<script>
+		function validateForm() {
+			if (isEmpty(document.getElementById('data_3').value.trim())) {
+				alert('First name is required!');
+				return false;
+			}
+			if (isEmpty(document.getElementById('data_4').value.trim())) {
+				alert('Last name is required!');
+				return false;
+			}
+			if (!validateEmail(document.getElementById('data_5').value.trim())) {
+				alert('Email must be a valid email address!');
+				return false;
+			}
+			return true;
+		}
+		function isEmpty(str) { return (str.length == 0 || !str.trim()); }
+		function validateEmail(email) {
+			var re = "";
+			return isEmpty(email) || re.test(email);
+		}
+	</script>
+</head>
+<body>
+	
+	<h1>Tour Booking</h1>
+	<div class="container">
+		<form method="POST" action="booking.php" name="form" onsubmit="return validateForm()">
+			<div class="textbox">
+				<input type="text" placeholder="First Name" name="customer_name" value=""  onkeypress="return /[a-zA-Z]/i.test(event.key)" required>  
+			</div>
+
+			<div class="textbox">
+				<input type="text" placeholder="Email" name="customer_email" value="" required pattern="[a-z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-z0-9-]+.[a-z]{2,4}" title="Invalid Email">
+			</div>
+
+			<div class="textbox">
+				<input type="text" placeholder="Phone" name="phone" value="" onkeypress="return /[0-9]/i.test(event.key)" maxlength="10" pattern="([0-9]){10,}" required>
+			</div>
+
+			<!-- <div class="textbox">
+				<input type="text" placeholder="booking_date" name="booking_date" value="">
+			</div> -->
+
+			<div class="textbox">
+				<input type="text" placeholder="Number_of_people" name="number_of_people" value="" required>
+			</div>
+
+			<div class="textbox">
+				<input type="text" placeholder="city" name="city" value="" onkeypress="return /[a-zA-Z]/i.test(event.key)" required>
+			</div>
+
+			<div class="textbox">
+				<input type="text" placeholder="Destination" name="destination" value="" required>
+			</div>
+			<div class="btn">
+				<input name="submit" value="Submit" type="submit">
+			</div>
+		</form>
+	</div>
+
+</body>
+</html>
